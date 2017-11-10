@@ -1,8 +1,10 @@
 authors:
+  ch: Charles Hansen; chansen
   ex: Edwin Xie; exie
   gr: Gabe Rosenhouse; grosenhouse
   nk: Nino Kodabande
   ah: Aaron Hurley; ahurley
+  nm: Nick Mahoney; nmahoney
 
 email:
   domain: pivotal.io
