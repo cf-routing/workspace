@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "Installing Consul"
+
+wget https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_darwin_amd64.zip -O /tmp/consul.zip && \
+unzip /tmp/consul.zip -d /usr/local/bin
+
+echo "Setuping up Mysql"
+
+ps aux | grep mysqld | grep -v grep | awk '{ print $2 }' | xargs kill
+
+cat > /tmp/mysql-init <<EOF
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';"
+CREATE DATABASE routing_api_test;
+EOF
+
+brew link postgresql@9.6
+brew services start postgresql@9.6
+psql -d postgres -c "CREATE ROLE postgres WITH SUPERUSER LOGIN PASSWORD 'password';" 
+mysqld --init-file=/tmp/mysql-init &
+

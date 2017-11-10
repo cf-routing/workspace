@@ -191,5 +191,11 @@ function clone_workspace_repo_if_not_exist() {
 
 clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" bosh-deployment
 clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/cf-deployment" cf-deployment
+clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/cf-release" cf-release
+clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/routing-ci" routing-ci
+
+echo "Configure databases"
+./scripts/setup_routing_dbs
 
 echo "Workstation setup complete, open a new window to apply all settings"
+
