@@ -168,3 +168,44 @@ gobosh_target_lite ()
 
   export BOSH_DEPLOYMENT=cf;
 }
+
+cf_target_lite()
+{
+  local env_dir=${HOME}/workspace/deployments/lite
+
+  cf api api.bosh-lite.com --skip-ssl-validation
+  adminpw=$(grep cf_admin_password $env_dir/deployment-vars.yml | cut -d ' ' -f2)
+  cf auth admin "$adminpw"
+}
+
+
+gobosh_deploy_bosh_lite ()
+{
+  local env_dir=${HOME}/workspace/deployments/lite
+
+  bosh deploy --no-redact ~/workspace/cf-deployment/cf-deployment.yml \
+  -o ~/workspace/cf-deployment/operations/use-compiled-releases.yml \
+  -o ~/workspace/cf-deployment/operations/bosh-lite.yml \
+  --vars-store $env_dir/deployment-vars.yml \
+  -v system_domain=bosh-lite.com
+}
+
+gimme_certs () {
+	local common_name
+	common_name="${1:-fake}"
+	local ca_common_name
+	ca_common_name="${2:-${common_name}_ca}"
+	local depot_path
+	depot_path="${3:-fake_cert_stuff}"
+	certstrap --depot-path ${depot_path} init --common-name "${ca_common_name}"
+	certstrap --depot-path ${depot_path} request-cert --common-name "${common_name}"
+	certstrap --depot-path ${depot_path} sign --CA "${ca_common_name}" "${common_name}"
+}
+
+bbl_gcp_creds () {
+  lpass show "BBL GCP Creds" --notes
+}
+
+eval_bbl_gcp_creds () {
+  eval "$(bbl_gcp_creds)"
+}
