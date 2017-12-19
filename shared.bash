@@ -9,6 +9,7 @@ function main() {
     alias bake="bundle exec rake"
     alias drm='docker rm $(docker ps -a -q)'
     alias drmi='docker rmi $(docker images -q)'
+    alias bosh2=bosh
 
     #git aliases
     alias gst="git status"
