@@ -70,6 +70,12 @@ function main() {
     eval "$(direnv hook bash)"
   }
 
+  function setup_bosh_env_scripts() {
+    local bosh_scripts
+    bosh_scripts="${HOME}/workspace/deployments-routing/scripts/script_helpers.sh"
+    [[ -s "${bosh_scripts}" ]] && source "${bosh_scripts}"
+  }
+
   function setup_gitprompt() {
     if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
       # git prompt config
