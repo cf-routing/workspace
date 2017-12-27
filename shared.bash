@@ -143,7 +143,7 @@ unset -f main
 
 gobosh_untarget ()
 {
-  unset BOSH_DIR
+  unset BOSH_BBL_ENVIRONMENT
   unset BOSH_USER
   unset BOSH_PASSWORD
   unset BOSH_ENVIRONMENT
@@ -153,6 +153,38 @@ gobosh_untarget ()
   unset BOSH_DEPLOYMENT
   unset BOSH_CLIENT
   unset BOSH_CLIENT_SECRET
+  unset JUMPBOX_PRIVATE_KEY
+}
+
+gobosh_target ()
+{
+  gobosh_untarget
+  if [ $# = 0 ]; then
+    return
+  fi
+
+  env=$1
+  if [ "$env" = "local" ] || [ "$env" = "lite" ]; then
+    gobosh_target_lite
+    return
+  fi
+
+  local BBL_STATE=~/workspace/deployments-routing/$env/bbl-state
+
+  pushd $BBL_STATE 1>/dev/null
+    eval "$(bbl print-env)"
+  popd 1>/dev/null
+
+  export BOSH_DEPLOYMENT="cf"
+  if [ "$env" = "ci" ]; then
+    export BOSH_DEPLOYMENT=concourse
+  fi
+
+  bosh environment
+
+  # set this variable for humans
+  BOSH_BBL_ENVIRONMENT=$env
+  export BOSH_BBL_ENVIRONMENT
 }
 
 gobosh_target_lite ()
