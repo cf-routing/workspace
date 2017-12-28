@@ -125,6 +125,9 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
+" jk in insert mode is escape
+inoremap jk <esc>
+
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
