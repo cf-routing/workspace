@@ -187,6 +187,22 @@ gobosh_target ()
   export BOSH_BBL_ENVIRONMENT
 }
 
+extract_var()
+{
+  env=$1
+  var=$2
+  bosh int --path /$var ${HOME}/workspace/deployments-routing/$env/deployment-vars.yml
+}
+
+cf_target()
+{
+  env=$1
+
+  cf api "api.$(extract_var $env system_domain)" --skip-ssl-validation
+  cf auth admin "$(extract_var $env cf_admin_password)"
+}
+
+
 gobosh_target_lite ()
 {
   gobosh_untarget
