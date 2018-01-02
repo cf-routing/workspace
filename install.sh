@@ -33,7 +33,21 @@ ln -sf $(pwd)/Brewfile ${HOME}/.Brewfile
 brew bundle --global
 brew bundle cleanup
 
-echo "Updating pip"
+echo "Install gpg..."
+if ! [[ -d "${HOME}/.gnupg" ]]; then
+  mkdir "${HOME}/.gnupg"
+  chmod 0700 "${HOME}/.gnupg"
+
+cat << EOF > "${HOME}/.gnupg/gpg-agent.conf"
+default-cache-ttl 3600
+pinentry-program /usr/local/bin/pinentry-mac
+enable-ssh-support
+EOF
+
+  gpg-connect-agent reloadagent /bye > /dev/null
+fi
+
+echo "Update pip..."
 pip3 install --upgrade pip
 
 echo "Install python-client for neovim"

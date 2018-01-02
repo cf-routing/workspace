@@ -93,7 +93,14 @@ function main() {
     [[ -s "${colorscheme}" ]] && source "${colorscheme}"
   }
 
+  function setup_gpg_config() {
+    local status
+    status=$(gpg --card-status &> /dev/null; echo $?)
 
+    if [[ "$status" == "0" ]]; then
+      export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+    fi
+  }
 
   local dependencies
     dependencies=(
@@ -106,6 +113,7 @@ function main() {
         completions
         direnv
         gitprompt
+        gpg_config
       )
 
   for dependency in ${dependencies[@]}; do
