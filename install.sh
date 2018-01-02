@@ -50,7 +50,7 @@ fi
 echo "Update pip..."
 pip3 install --upgrade pip
 
-echo "Install python-client for neovim"
+echo "Install python-client for neovim..."
 pip3 install neovim
 
 echo "Install the plug vim plugin manager..."
