@@ -61,7 +61,7 @@ brew "unibilium"
 brew "neovim"
 brew "packer"
 brew "pinentry-mac"
-brew "postgresql", restart_service: true
+brew "postgresql@9.6"
 brew "protobuf"
 brew "pwgen"
 brew "qt"
