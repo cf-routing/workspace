@@ -207,6 +207,7 @@ clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/bosh-deployme
 clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/cf-deployment" cf-deployment
 clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/cf-release" cf-release
 clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/routing-ci" routing-ci
+clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/deployments-routing" deployments-routing
 
 echo "Configure databases"
 ./scripts/setup_routing_dbs

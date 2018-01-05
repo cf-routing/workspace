@@ -115,6 +115,7 @@ function main() {
         direnv
         gitprompt
         gpg_config
+        bosh_env_scripts
       )
 
   for dependency in ${dependencies[@]}; do
