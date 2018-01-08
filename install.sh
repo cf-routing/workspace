@@ -191,8 +191,8 @@ if [ -z "$(fly -v)" ]; then
 fi
 
 echo "Set keyboard repeat rates"
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
 function clone_workspace_repo_if_not_exist() {
   local remote=$1
