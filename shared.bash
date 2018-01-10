@@ -208,10 +208,22 @@ cf_target()
 {
   env=$1
 
-  cf api "api.$(extract_var $env system_domain)" --skip-ssl-validation
+  cf api "api.$(get_system_domain $env)" --skip-ssl-validation
   cf auth admin "$(extract_var $env cf_admin_password)"
 }
 
+get_system_domain()
+{
+  local env
+  env=$1
+  local system_domain
+  system_domain=$(extract_var "${env}" system_domain 2>/dev/null)
+  if [[ $? -ne 0 ]]; then
+    system_domain="${env}".routing.cf-app.com
+  fi
+
+  echo "${system_domain}"
+}
 
 gobosh_target_lite ()
 {
@@ -241,6 +253,13 @@ cf_target_lite()
   cf api api.bosh-lite.com --skip-ssl-validation
   adminpw=$(grep cf_admin_password $env_dir/deployment-vars.yml | cut -d ' ' -f2)
   cf auth admin "$adminpw"
+}
+
+cf_seed()
+{
+  cf create-org o
+  cf create-space -o o s
+  cf target -o o -s s
 }
 
 
