@@ -20,7 +20,7 @@ To load iTerm preferences, point to this directory under `iTerm2` >
 
 # assumptions
 - install everything with brew
-- fixed ruby
+- spectacle for window management
 - neovim is the only vim
 - the less in the vim config, the better
 - we remote pair with [ngrok+tmux](./REMOTE_PAIRING.md) or Slack
