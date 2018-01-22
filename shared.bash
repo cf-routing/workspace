@@ -32,7 +32,7 @@ function main() {
     export GIT_DUET_ROTATE_AUTHOR=1
 
     # setup path
-    export PATH=$GOPATH/bin:$PATH:/usr/local/go/bin:$HOME/scripts
+    export PATH=$GOPATH/bin:$PATH:/usr/local/go/bin:$HOME/scripts:$HOME/workspace/routing-ci/scripts
 
     export EDITOR=nvim
   }
@@ -72,7 +72,7 @@ function main() {
 
   function setup_bosh_env_scripts() {
     local bosh_scripts
-    bosh_scripts="${HOME}/workspace/deployments-routing/scripts/script_helpers.sh"
+    bosh_scripts="${HOME}/workspace/routing-ci/scripts/script_helpers.sh"
     [[ -s "${bosh_scripts}" ]] && source "${bosh_scripts}"
   }
 
@@ -151,109 +151,6 @@ function reinstall() {
 main
 unset -f main
 
-gobosh_untarget ()
-{
-  unset BOSH_BBL_ENVIRONMENT
-  unset BOSH_USER
-  unset BOSH_PASSWORD
-  unset BOSH_ENVIRONMENT
-  unset BOSH_GW_HOST
-  unset BOSH_GW_PRIVATE_KEY
-  unset BOSH_CA_CERT
-  unset BOSH_DEPLOYMENT
-  unset BOSH_CLIENT
-  unset BOSH_CLIENT_SECRET
-  unset JUMPBOX_PRIVATE_KEY
-}
-
-gobosh_target ()
-{
-  gobosh_untarget
-  if [ $# = 0 ]; then
-    return
-  fi
-
-  env=$1
-  if [ "$env" = "local" ] || [ "$env" = "lite" ]; then
-    gobosh_target_lite
-    return
-  fi
-
-  local BBL_STATE=~/workspace/deployments-routing/$env/bbl-state
-
-  pushd $BBL_STATE 1>/dev/null
-    eval "$(bbl print-env)"
-  popd 1>/dev/null
-
-  export BOSH_DEPLOYMENT="cf"
-  if [ "$env" = "ci" ]; then
-    export BOSH_DEPLOYMENT=concourse
-  fi
-
-  bosh environment
-
-  # set this variable for humans
-  BOSH_BBL_ENVIRONMENT=$env
-  export BOSH_BBL_ENVIRONMENT
-}
-
-extract_var()
-{
-  env=$1
-  var=$2
-  bosh int --path /$var ${HOME}/workspace/deployments-routing/$env/deployment-vars.yml
-}
-
-cf_target()
-{
-  env=$1
-
-  cf api "api.$(get_system_domain $env)" --skip-ssl-validation
-  cf auth admin "$(extract_var $env cf_admin_password)"
-}
-
-get_system_domain()
-{
-  local env
-  env=$1
-  local system_domain
-  system_domain=$(extract_var "${env}" system_domain 2>/dev/null)
-  if [[ $? -ne 0 ]]; then
-    system_domain="${env}".routing.cf-app.com
-  fi
-
-  echo "${system_domain}"
-}
-
-gobosh_target_lite ()
-{
-  gobosh_untarget
-  local env_dir=${HOME}/workspace/deployments/lite
-
-  pushd $env_dir >/dev/null
-    BOSH_CLIENT="admin"
-    BOSH_CLIENT_SECRET="$(bosh int ./creds.yml --path /admin_password)"
-    BOSH_ENVIRONMENT="vbox"
-    BOSH_CA_CERT=/tmp/bosh-lite-ca-cert
-
-    export BOSH_CLIENT
-    export BOSH_CLIENT_SECRET
-    export BOSH_ENVIRONMENT
-    export BOSH_CA_CERT
-    bosh int ./creds.yml --path /director_ssl/ca > $BOSH_CA_CERT
-  popd 1>/dev/null
-
-  export BOSH_DEPLOYMENT=cf;
-}
-
-cf_target_lite()
-{
-  local env_dir=${HOME}/workspace/deployments/lite
-
-  cf api api.bosh-lite.com --skip-ssl-validation
-  adminpw=$(grep cf_admin_password $env_dir/deployment-vars.yml | cut -d ' ' -f2)
-  cf auth admin "$adminpw"
-}
 
 cf_seed()
 {
