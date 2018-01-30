@@ -167,9 +167,9 @@ gimme_certs () {
 	ca_common_name="${2:-${common_name}_ca}"
 	local depot_path
 	depot_path="${3:-fake_cert_stuff}"
-	certstrap --depot-path ${depot_path} init --common-name "${ca_common_name}"
-	certstrap --depot-path ${depot_path} request-cert --common-name "${common_name}"
-	certstrap --depot-path ${depot_path} sign --CA "${ca_common_name}" "${common_name}"
+	certstrap --depot-path ${depot_path} init --passphrase '' --common-name "${ca_common_name}"
+	certstrap --depot-path ${depot_path} request-cert --passphrase '' -common-name "${common_name}"
+	certstrap --depot-path ${depot_path} sign --passphrase '' --CA "${ca_common_name}" "${common_name}"
 }
 
 bbl_gcp_creds () {
