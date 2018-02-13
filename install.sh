@@ -57,6 +57,24 @@ else
   ~/.vim/install
 fi
 
+if [ -f ${HOME}/.tmux/install ]; then
+  echo "You already have luan/tmuxfiles installed. Skipping..."
+else
+  set +e
+    tmux list-sessions # this exits 1 if there are no sessions
+
+    if [ $? -eq 0 ]; then
+      echo "Please kill all of your tmux sessions and run this script again."
+      exit 1
+    else
+      echo "Removing old tmux.conf installing luan/tmuxfiles..."
+      rm ~/.tmux.conf
+      git clone git@github.com:luan/tmuxfiles ~/.tmuxfiles
+      ~/.tmuxfiles/install
+    fi
+  set -e
+fi
+
 echo "Update pip..."
 pip3 install --upgrade pip
 
@@ -83,9 +101,6 @@ ln -sf $(pwd)/global-gitignore ${HOME}/.global-gitignore
 
 echo "link global .git-prompt-colors.sh"
 ln -sf $(pwd)/git-prompt-colors.sh ${HOME}/.git-prompt-colors.sh
-
-echo "link global .tmux.conf"
-ln -sf $(pwd)/tmux.conf ${HOME}/.tmux.conf
 
 ruby_version=2.4.2
 echo "Install ruby $ruby_version..."
