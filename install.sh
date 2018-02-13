@@ -3,6 +3,15 @@
 set -e
 set -u
 
+function clone_if_not_exist() {
+  local remote=$1
+  local dst_dir="$2"
+  echo "Cloning $remote into $dst_dir"
+  if [ ! -d $dst_dir ]; then
+    git clone $remote $dst_dir
+  fi
+}
+
 function confirm() {
   read -r -p "Are you sure? [y/N] " response
   case $response in
@@ -47,33 +56,25 @@ EOF
   gpg-connect-agent reloadagent /bye > /dev/null
 fi
 
-if [ -f ${HOME}/.vim/install ]; then
+if [ -f ${HOME}/.config/vim ]; then
   echo "You already have luan/vimfiles installed. Updating..."
-  ~/.vim/update
+  ${HOME}/.config/vim/update
 else
-  echo "Removing old vimfiles and symlinks and installing luan/vimfiles..."
-  rm -rf ~/.vim/ && rm -rf ~/config/.nvim
-  git clone git@github.com:luan/vimfiles ~/.vim
-  ~/.vim/install
+  clone_if_not_exist git@github.com:luan/vimfiles "${HOME}/.config/vim"
+  ${HOME}/.config/vim/install
 fi
 
-if [ -f ${HOME}/.tmux/install ]; then
-  echo "You already have luan/tmuxfiles installed. Skipping..."
-else
-  set +e
-    tmux list-sessions # this exits 1 if there are no sessions
+set +e
+  tmux list-sessions # this exits 1 if there are no sessions
 
-    if [ $? -eq 0 ]; then
-      echo "Please kill all of your tmux sessions and run this script again."
-      exit 1
-    else
-      echo "Removing old tmux.conf installing luan/tmuxfiles..."
-      rm ~/.tmux.conf
-      git clone git@github.com:luan/tmuxfiles ~/.tmuxfiles
-      ~/.tmuxfiles/install
-    fi
-  set -e
-fi
+  if [ $? -eq 0 ]; then
+    echo "Please kill all of your tmux sessions and run this script again."
+    exit 1
+  else
+    clone_if_not_exist "git@github.com:luan/tmuxfiles" "${HOME}/.config/tmux"
+    ${HOME}/.config/tmux/install
+  fi
+set -e
 
 echo "Update pip..."
 pip3 install --upgrade pip
@@ -197,20 +198,11 @@ echo "Set keyboard repeat rates"
 defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
-function clone_workspace_repo_if_not_exist() {
-  local remote=$1
-  local dst_dir="$workspace/$2"
-  echo "Cloning $remote into $dst_dir"
-  if [ ! -d $dst_dir ]; then
-    git clone $remote $dst_dir
-  fi
-}
-
-clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" bosh-deployment
-clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/cf-deployment" cf-deployment
-clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/cf-release" cf-release
-clone_workspace_repo_if_not_exist "https://github.com/cloudfoundry/routing-ci" routing-ci
-clone_workspace_repo_if_not_exist "git@github.com:cloudfoundry/deployments-routing" deployments-routing
+clone_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" "${HOME}/workspace/bosh-deployment"
+clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
+clone_if_not_exist "https://github.com/cloudfoundry/cf-release" "${HOME}/workspace/cf-release"
+clone_if_not_exist "https://github.com/cloudfoundry/routing-ci" "${HOME}/workspace/routing-ci"
+clone_if_not_exist "git@github.com:cloudfoundry/deployments-routing" "${HOME}/workspace/deployments-routing"
 
 echo "Configure databases"
 ./scripts/setup_routing_dbs
