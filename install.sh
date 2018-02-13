@@ -47,33 +47,21 @@ EOF
   gpg-connect-agent reloadagent /bye > /dev/null
 fi
 
+if [ -f ${HOME}/.vim/install ]; then
+  echo "You already have luan/vimfiles installed. Updating..."
+  ~/.vim/update
+else
+  echo "Removing old vimfiles and symlinks and installing luan/vimfiles..."
+  rm -rf ~/.vim/ && rm -rf ~/config/.nvim
+  git clone git@github.com:luan/vimfiles ~/.vim
+  ~/.vim/install
+fi
+
 echo "Update pip..."
 pip3 install --upgrade pip
 
 echo "Install python-client for neovim..."
 pip3 install neovim
-
-echo "Install the plug vim plugin manager..."
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "Symlink the vimrc to .config/nvim/init.vim..."
-ln -sf $(pwd)/vimrc ${HOME}/.config/nvim/init.vim
-
-echo "Run the vim plugin install..."
-nvim -c "PlugInstall" -c "qall" --headless
-
-echo "Update vim plugins..."
-nvim -c "PlugUpdate" -c "qall" --headless
-
-echo "Copy snippets..."
-mkdir -p ${HOME}/.vim/UltiSnips
-
-echo "Symlink the go.snippets to .vim/UltiSnips..."
-ln -sf $(pwd)/go.snippets ${HOME}/.vim/UltiSnips
-
-echo "Install the vim go binaries..."
-nvim -c "GoInstallBinaries" -c "qall!" --headless /tmp/foo.go
 
 echo "Add yamllint for neomake..."
 pip3 install -q yamllint
