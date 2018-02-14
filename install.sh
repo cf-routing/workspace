@@ -60,7 +60,7 @@ if [ -f ${HOME}/.config/vim ]; then
   echo "You already have luan/vimfiles installed. Updating..."
   ${HOME}/.config/vim/update
 else
-  clone_if_not_exist git@github.com:luan/vimfiles "${HOME}/.config/vim"
+  clone_if_not_exist https://github.com/luan/vimfiles "${HOME}/.config/vim"
   ${HOME}/.config/vim/install
 fi
 
@@ -71,7 +71,7 @@ set +e
     echo "Please kill all of your tmux sessions and run this script again."
     exit 1
   else
-    clone_if_not_exist "git@github.com:luan/tmuxfiles" "${HOME}/.config/tmux"
+    clone_if_not_exist "https://github.com/luan/tmuxfiles" "${HOME}/.config/tmux"
     ${HOME}/.config/tmux/install
   fi
 set -e
