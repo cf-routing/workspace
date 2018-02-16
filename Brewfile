@@ -70,6 +70,7 @@ brew "sqlite"
 brew "the_platinum_searcher"
 brew "the_silver_searcher"
 brew "tig"
+brew "tmate"
 brew "tmux"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
