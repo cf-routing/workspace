@@ -153,9 +153,6 @@ fi
 workspace=${HOME}/workspace
 mkdir -p $workspace
 
-echo "Creating deployments dir"
-mkdir -p $workspace/deployments
-
 echo "Symlink scripts into ~/scripts"
 ln -sfn $PWD/scripts ${HOME}/scripts
 
@@ -177,19 +174,9 @@ GOPATH="${HOME}/go" go get -u github.com/onsi/gomega
 echo "Install counterfeiter..."
 GOPATH="${HOME}/go" go get -u github.com/maxbrunsfeld/counterfeiter
 
-echo "Install deployment extractor..."
-GOPATH="${HOME}/go" go get -u github.com/kkallday/deployment-extractor
-
-echo "Install spiff"
-if [ -z "$(which spiff)" ]; then
-  wget https://github.com/cloudfoundry-incubator/spiff/releases/download/v1.0.7/spiff_darwin_amd64.zip
-  unzip spiff_darwin_amd64.zip -d /usr/local/bin
-  rm spiff_darwin_amd64.zip
-fi
-
 echo "Install fly"
 if [ -z "$(fly -v)" ]; then
-  wget https://github.com/concourse/concourse/releases/download/v2.4.0/fly_darwin_amd64
+  wget https://github.com/concourse/concourse/releases/download/v3.8.0/fly_darwin_amd64
   mv fly_darwin_amd64 /usr/local/bin/fly
   chmod +x /usr/local/bin/fly
 fi
