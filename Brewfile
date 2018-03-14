@@ -13,6 +13,7 @@ brew "autoconf"
 brew "automake"
 brew "awscli"
 brew "azure-cli"
+brew "bash-completion"
 brew "bash-git-prompt"
 brew "bazaar"
 cask "caskroom/versions/java8"  # bazel depends on this, so it must be installed first
