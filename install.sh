@@ -189,6 +189,7 @@ clone_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" "${HOME}/wo
 clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
 clone_if_not_exist "https://github.com/cloudfoundry/cf-release" "${HOME}/workspace/cf-release"
 clone_if_not_exist "https://github.com/cloudfoundry/routing-ci" "${HOME}/workspace/routing-ci"
+clone_if_not_exist "https://github.com/cloudfoundry/routing-release" "${HOME}/workspace/routing-release"
 clone_if_not_exist "git@github.com:cloudfoundry/deployments-routing" "${HOME}/workspace/deployments-routing"
 
 echo "Configure databases"
