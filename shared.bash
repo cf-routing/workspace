@@ -175,3 +175,8 @@ bbl_gcp_creds () {
 eval_bbl_gcp_creds () {
   eval "$(bbl_gcp_creds)"
 }
+
+pullify () {
+  git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
+  git fetch origin
+}
