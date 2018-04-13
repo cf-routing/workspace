@@ -191,6 +191,8 @@ clone_if_not_exist "https://github.com/cloudfoundry/cf-release" "${HOME}/workspa
 clone_if_not_exist "https://github.com/cloudfoundry/routing-ci" "${HOME}/workspace/routing-ci"
 clone_if_not_exist "https://github.com/cloudfoundry/routing-release" "${HOME}/workspace/routing-release"
 clone_if_not_exist "git@github.com:cloudfoundry/deployments-routing" "${HOME}/workspace/deployments-routing"
+clone_if_not_exist "git@github.com:cloudfoundry/istio-release" "${HOME}/workspace/istio-release"
+clone_if_not_exist "git@github.com:cloudfoundry/istio-workspace" "${HOME}/workspace/istio-workspace"
 
 echo "Configure databases"
 ./scripts/setup_routing_dbs
