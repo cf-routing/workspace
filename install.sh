@@ -185,6 +185,7 @@ echo "Set keyboard repeat rates"
 defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
+clone_if_not_exist "https://github.com/cloudfoundry/routing-team-checklists" "${HOME}/workspace/routing-team-checklists"
 clone_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" "${HOME}/workspace/bosh-deployment"
 clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
 clone_if_not_exist "https://github.com/cloudfoundry/cf-release" "${HOME}/workspace/cf-release"
