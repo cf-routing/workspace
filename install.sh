@@ -173,7 +173,7 @@ GOPATH="${HOME}/go" go get -u github.com/maxbrunsfeld/counterfeiter
 
 echo "Install fly"
 if [ -z "$(fly -v)" ]; then
-  wget https://github.com/concourse/concourse/releases/download/v3.8.0/fly_darwin_amd64
+  wget https://github.com/concourse/concourse/releases/download/v3.9.2/fly_darwin_amd64
   mv fly_darwin_amd64 /usr/local/bin/fly
   chmod +x /usr/local/bin/fly
 fi
