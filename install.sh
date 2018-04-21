@@ -116,9 +116,6 @@ ln -sf $(pwd)/gemrc ${HOME}/.gemrc
 echo "Install the bundler gem..."
 gem install bundler
 
-echo "Install the uaac gem..."
-gem install cf-uaac
-
 echo "Cloning colorschemes..."
 if [ ! -d ${HOME}/.config/colorschemes ]; then
   git clone https://github.com/chriskempson/base16-shell.git "${HOME}/.config/colorschemes"
