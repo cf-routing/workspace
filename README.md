@@ -1,10 +1,7 @@
 # workspace configuration
+simple bash scripts for workstation setup
 
-# why?
-there are a whole host of tools to setup workstations but none are simple,
-this is an attempt at simple.
-
-# installation
+## installation
 On a freshly imaged machine, open **Terminal**
 ```
 sudo xcodebuild -license  # follow the interactive prompts
@@ -18,9 +15,10 @@ cd routing-workspace
 To load iTerm preferences, point to this directory under `iTerm2` >
 `Preferences` > `Load preferences from a custom folder or URL`.
 
-# assumptions
-- install everything with brew
+## patterns
+- keep it simple
+- declarative and idempotent
+- install as much as possible via brew
 - spectacle for window management
-- neovim is the only vim
-- the less in the vim config, the better
-- we remote pair with [ngrok+tmux](./REMOTE_PAIRING.md) or Slack
+- [luan vim](https://github.com/luan/vimfiles) with neovim
+- remote pair with [ngrok+tmux](./REMOTE_PAIRING.md)
