@@ -156,7 +156,7 @@ cf_seed()
 }
 
 
-gimme_certs () {
+gimme_certs() {
 	local common_name
 	common_name="${1:-fake}"
 	local ca_common_name
@@ -172,11 +172,41 @@ bbl_gcp_creds () {
   lpass show "BBL GCP Creds" --notes
 }
 
-eval_bbl_gcp_creds () {
+eval_bbl_gcp_creds() {
   eval "$(bbl_gcp_creds)"
 }
 
-pullify () {
+pullify() {
   git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
   git fetch origin
+}
+
+istio_docker() {
+  local istio_dir
+  istio_dir="${1}"
+
+  if [[ -z "${istio_dir}" ]]; then
+    echo "WARNING: istio_dir not set"
+    echo "Setting istio directory to ~/workspace/istio-release/src/istio.io/istio"
+    echo "You may optionally pass your preferred istio directory as the first argument 😀 "
+    istio_dir="${HOME}/workspace/istio-release/src/istio.io/istio"
+  else
+    echo "istio_directory set to ${istio_dir}"
+  fi
+
+  echo "Getting docker auth token..."
+  local token
+  token=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'$(lpass show Shared-routing/hub.docker.com --username)'", "password": "'$(lpass show Shared-routing/hub.docker.com --password)'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
+
+  echo "Getting istio/ci tags..."
+  local tag
+  tag=$(curl -s -H "Authorization: JWT ${token}" https://hub.docker.com/v2/repositories/istio/ci/tags/?page_size=100 | jq -r '.results|.[0].name')
+
+  echo "Getting most recent istio/ci images..."
+  docker pull istio/ci:"${tag}"
+
+  local image_id
+  image_id=$(docker images --format "{{.ID}}" | sed -n 1p)
+
+  docker run -it -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
 }
