@@ -222,6 +222,7 @@ all_the_repos() {
   clone_if_not_exist "git@github.com:cloudfoundry/routing-team-checklists" "${HOME}/workspace/routing-team-checklists"
   clone_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" "${HOME}/workspace/bosh-deployment"
   clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
+  clone_if_not_exist "https://github.com/cloudfoundry/istio-acceptance-tests" "${HOME}/workspace/istio-acceptance-tests"
   clone_if_not_exist "https://github.com/cloudfoundry/istio-release" "${HOME}/workspace/istio-release"
   clone_if_not_exist "https://github.com/cloudfoundry/istio-workspace" "${HOME}/workspace/istio-workspace"
   clone_if_not_exist "https://github.com/cloudfoundry/routing-api-cli" "${HOME}/workspace/routing-api-cli"
