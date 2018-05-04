@@ -31,6 +31,12 @@ function main() {
     export GIT_DUET_GLOBAL=true
     export GIT_DUET_ROTATE_AUTHOR=1
 
+    # NOTE: you'll have to run `git init` once again in pre-existing repos to
+    # ensure the hook file gets copied locally. afterward, use the normal
+    # git commands (e.g. `git commit` instead of `git ci`) and the commit msg
+    # hook will append a `Co-authored-by` trailer for each co-author.
+    export GIT_DUET_CO_AUTHORED_BY=1
+
     # setup path
     export PATH=$GOPATH/bin:$PATH:/usr/local/go/bin:$HOME/scripts:$HOME/workspace/routing-ci/scripts
 
