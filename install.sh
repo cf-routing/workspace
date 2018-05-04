@@ -185,7 +185,7 @@ install_tmuxfiles() {
     tmux list-sessions # this exits 1 if there are no sessions
 
     if [ $? -eq 0 ]; then
-      echo "Please kill all of your tmux sessions and run this script again."
+      echo "If you'd like to update your tmux files, please kill all of your tmux sessions and run this script again."
       exit 1
     else
       clone_if_not_exist "https://github.com/luan/tmuxfiles" "${HOME}/workspace/tmuxfiles"
