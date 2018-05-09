@@ -134,11 +134,10 @@ EOF
 install_vimfiles() {
   if [ -f ${HOME}/.config/vim ]; then
     echo "You already have luan/vimfiles installed. Updating..."
-    ${HOME}/.config/vim/update
   else
     clone_if_not_exist https://github.com/luan/vimfiles "${HOME}/.config/vim"
-    ${HOME}/.config/vim/install
   fi
+  ${HOME}/.config/vim/install
 
   echo "Updating pip..."
   pip3 install --upgrade pip
