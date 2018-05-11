@@ -213,7 +213,7 @@ istio_docker() {
     docker pull istio/ci:"${tag}"
 
     local image_id
-    image_id=$(docker images --format "{{.ID}}" | sed -n 1p)
+    image_id=$(docker images | grep istio/ci | grep minikube | awk '{print $3}')
 
     docker run -it -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
   else
