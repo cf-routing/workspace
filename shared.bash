@@ -215,7 +215,7 @@ istio_docker() {
     local image_id
     image_id=$(docker images | grep istio/ci | grep minikube | awk '{print $3}')
 
-    docker run -it -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
+    docker run -it --cap-add=NET_ADMIN -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
   else
     echo "Please log in to lastpass using the lastpass cli."
   fi
