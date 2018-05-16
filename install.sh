@@ -224,6 +224,7 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
   clone_if_not_exist "https://github.com/cloudfoundry/cf-acceptance-tests" "${HOME}/workspace/cf-acceptance-tests"
   clone_if_not_exist "https://github.com/cloudfoundry/cf-smoke-tests" "${HOME}/workspace/cf-smoke-tests"
+  clone_if_not_exist "https://github.com/cloudfoundry/nats-release" "${HOME}/workspace/nats-release"
   clone_if_not_exist "https://github.com/cloudfoundry/istio-acceptance-tests" "${HOME}/workspace/istio-acceptance-tests"
   clone_if_not_exist "https://github.com/cloudfoundry/istio-release" "${HOME}/workspace/istio-release"
   clone_if_not_exist "https://github.com/cloudfoundry/istio-workspace" "${HOME}/workspace/istio-workspace"
