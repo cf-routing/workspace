@@ -233,6 +233,7 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cloudfoundry/routing-perf-release" "${HOME}/workspace/routing-perf-release"
   clone_if_not_exist "https://github.com/cloudfoundry/routing-release" "${HOME}/workspace/routing-release"
   clone_if_not_exist "https://github.com/cloudfoundry/routing-sample-apps" "${HOME}/workspace/routing-sample-apps"
+  clone_if_not_exist "https://github.com/cloudfoundry/docs-book-cloudfoundry" "${HOME}/workspace/docs-book-cloudfoundry"
 }
 
 main "$@"
