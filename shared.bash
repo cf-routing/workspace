@@ -213,7 +213,7 @@ istio_docker() {
     docker pull istio/ci:"${tag}"
 
     local image_id
-    image_id=$(docker images -f reference=istio/ci --format "{{.ID}}")
+    image_id=$(docker images -f reference=istio/ci --format "{{.ID}}" | head -n1)
 
     docker run -it --cap-add=NET_ADMIN -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
   else
