@@ -4,6 +4,8 @@
 # Also exit when there are unset variables
 set -eu
 
+skip="${1:-}"
+
 main() {
   confirm
 
@@ -88,6 +90,10 @@ clone_if_not_exist() {
 }
 
 confirm() {
+  if [[ -n "${skip}" ]] && [[ "${skip}" == "-f" ]]; then
+    return
+  fi
+
   read -r -p "Are you sure? [y/N] " response
   case $response in
     [yY][eE][sS]|[yY])
