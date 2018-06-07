@@ -241,7 +241,7 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cloudfoundry/routing-sample-apps" "${HOME}/workspace/routing-sample-apps"
   clone_if_not_exist "https://github.com/cloudfoundry/docs-book-cloudfoundry" "${HOME}/workspace/docs-book-cloudfoundry"
   clone_if_not_exist "https://github.com/cloudfoundry/docs-running-cf" "${HOME}/workspace/docs-running-cf"
-  clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${HOME}/workspace/istio-scaling"
+  clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${GOPATH}/src/code.cloudfoundry.org/istio-scaling"
 }
 
 main "$@"
