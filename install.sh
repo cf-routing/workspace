@@ -84,8 +84,8 @@ clone_if_not_exist() {
   local remote=$1
   local dst_dir="$2"
   echo "Cloning $remote into $dst_dir"
-  if [ ! -d $dst_dir ]; then
-    git clone $remote $dst_dir
+  if [[ ! -d $dst_dir ]]; then
+    git clone "$remote" "$dst_dir"
   fi
 }
 
@@ -109,7 +109,7 @@ confirm() {
 
 brew_all_the_things() {
   echo "Installing homebrew..."
-  if [ -z "$(which brew)" ]; then
+  if [[ -z "$(which brew)" ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
@@ -138,14 +138,6 @@ EOF
 }
 
 install_vimfiles() {
-  if [ -f ${HOME}/.config/vim ]; then
-    echo "You already have luan/vimfiles installed. Updating..."
-    ${HOME}/.config/vim/update
-  else
-    clone_if_not_exist https://github.com/luan/vimfiles "${HOME}/.config/vim"
-    ${HOME}/.config/vim/install
-  fi
-
   echo "Updating pip..."
   pip3 install --upgrade pip
 
@@ -154,6 +146,15 @@ install_vimfiles() {
 
   echo "Adding yamllint for neomake..."
   pip3 install -q yamllint
+
+  if [[ -f ${HOME}/.config/vim ]]; then
+    echo "removing ~/.config/vim dir && ~/.config/nvim"
+    rm -rf "${HOME}/.config/vim"
+    rm -rf "${HOME}/.config/nvim"
+    rm -rf "${HOME}/*.vim"
+  else
+    clone_if_not_exist https://github.com/luan/nvim "${HOME}/.config/nvim"
+  fi
 }
 
 install_ruby() {
@@ -173,12 +174,12 @@ install_ruby() {
 setup_ssh() {
   echo "Setting up SSH config"
   echo "Ignoring ssh security for ephemeral environments..."
-  if [ ! -d ${HOME}/.ssh ]; then
+  if [[ ! -d ${HOME}/.ssh ]]; then
     mkdir ${HOME}/.ssh
     chmod 0700 ${HOME}/.ssh
   fi
 
-  if [ -f ${HOME}/.ssh/config ]; then
+  if [[ -f ${HOME}/.ssh/config ]]; then
     echo "Looks like ~/.ssh/config already exists, overwriting..."
   fi
 
