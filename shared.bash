@@ -217,6 +217,6 @@ istio_docker() {
 
     docker run -it --cap-add=NET_ADMIN -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
   else
-    echo "Please log in to lastpass using the lastpass cli."
+    echo "Please log in to lastpass using the lastpass cli. 😀"
   fi
 }
