@@ -1,14 +1,15 @@
 authors:
   ah: Aaron Hurley; ahurley
+  ck: Clay Kauzlaric; ckauzlaric
+  es: Elena Sharma; esharma
   gr: Gabe Rosenhouse; grosenhouse
   ks: Kauana dos Santos; kdossantos
-  nk: Nino Kodabande
+  lc: Lisa Cho; lcho
   nh: Nancy Hsieh; nhsieh
+  nk: Nino Kodabande
+  td: Tim Downey; tdowney
   uu: Utako Ueda; uueda
   zg: Zachary Gershman; zgershman
-  lc: Lisa Cho; lcho
-  es: Elena Sharma; esharma
-  td: Tim Downey; tdowney
 
 email:
   domain: pivotal.io
