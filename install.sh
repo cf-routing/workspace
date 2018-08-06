@@ -155,6 +155,9 @@ install_vimfiles() {
   else
     clone_if_not_exist https://github.com/luan/nvim "${HOME}/.config/nvim"
   fi
+
+  echo "Adding configuration to nvim..."
+  ln -sf "$(pwd)/nvim_config/after.vim" "${HOME}/.config/nvim/user/after.vim"
 }
 
 install_ruby() {
