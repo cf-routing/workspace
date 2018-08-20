@@ -203,7 +203,7 @@ istio_docker() {
 
     echo "Getting docker auth token..."
     local token
-    token=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'$(lpass show Shared-routing/hub.docker.com --username)'", "password": "'$(lpass show Shared-routing/hub.docker.com --password)'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
+    token=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'$(lpass show "Shared-CF Routing"/hub.docker.com --username)'", "password": "'$(lpass show "Shared-CF Routing"/hub.docker.com --password)'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
 
     echo "Getting istio/ci tags..."
     local tag
