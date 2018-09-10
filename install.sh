@@ -227,24 +227,64 @@ setup_git() {
 all_the_repos() {
   echo "Cloning all of the repos we work on..."
 
+  # Deployments Routing:  Pipelines, environment info, helpful scripts
   clone_if_not_exist "git@github.com:cloudfoundry/deployments-routing" "${HOME}/workspace/deployments-routing"
+
+  # Routing Datadog Config: Configure your Data 🐶
   clone_if_not_exist "git@github.com:cloudfoundry/routing-datadog-config" "${HOME}/workspace/routing-datadog-config"
+
+  # Routing Team Checklists: Checklists (on-call, onboarding) and a kind of helpful wiki
   clone_if_not_exist "git@github.com:cloudfoundry/routing-team-checklists" "${HOME}/workspace/routing-team-checklists"
+
+  # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
+  clone_if_not_exist "git@github.com:cloudfoundry/routing-support-notes" "${HOME}/workspace/routing-support-notes"
+
+  # Bosh Deployment: We usually use this to bump golang in our releases
   clone_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" "${HOME}/workspace/bosh-deployment"
+
+  # CF Deployment: We use it to deploy Cloud Foundries
   clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
+
+  # CF Acceptance Test: 🐱 🐱  or CATS. Happy path integration tests for CF
   clone_if_not_exist "https://github.com/cloudfoundry/cf-acceptance-tests" "${HOME}/workspace/cf-acceptance-tests"
+
+  # CF Smoke Tests: Quick test that pretty much just pushes an app to verify a successful deployment of CF
   clone_if_not_exist "https://github.com/cloudfoundry/cf-smoke-tests" "${HOME}/workspace/cf-smoke-tests"
+
+  # NATS Release: Inherited from Release Integration. We now own this release, which deploys NATS, which is used in CF
   clone_if_not_exist "https://github.com/cloudfoundry/nats-release" "${HOME}/workspace/nats-release"
+
+  # Istio Acceptance Tests: Used to verify Cloud Foundry integration with Istio using real environments and real components
   clone_if_not_exist "https://github.com/cloudfoundry/istio-acceptance-tests" "${HOME}/workspace/istio-acceptance-tests"
+
+  # Istio Release: BOSH release used to deploy Istio, Envoy, Copilot
   clone_if_not_exist "https://github.com/cloudfoundry/istio-release" "${HOME}/workspace/istio-release"
+
+  # Istio Workspace: Use this if you want to work outside of your GOPATH and spin up a Vagrant VM for testing (see istio_docker())
   clone_if_not_exist "https://github.com/cloudfoundry/istio-workspace" "${HOME}/workspace/istio-workspace"
+
+  # Routing API CLI: Used to interact with the Routing API, which can be found in Routing Release
   clone_if_not_exist "https://github.com/cloudfoundry/routing-api-cli" "${HOME}/workspace/routing-api-cli"
+
+  # Routing CI: Scripts and tasks for the Routing Concourse CI
   clone_if_not_exist "https://github.com/cloudfoundry/routing-ci" "${HOME}/workspace/routing-ci"
+
+  # Routing Perf Release: Used to run performance tests against Routing Release
   clone_if_not_exist "https://github.com/cloudfoundry/routing-perf-release" "${HOME}/workspace/routing-perf-release"
+
+  # Routing Release: BOSH Release home to the Gorouter, TCP router, and a bunch of other routing related things. Spelunk! Refactor!
   clone_if_not_exist "https://github.com/cloudfoundry/routing-release" "${HOME}/workspace/routing-release"
+
+  # Routing Sample Apps: Mostly used by developers and PMs for debugging and acceptance. If you don't see what you need, make it and add extensive documentation.
   clone_if_not_exist "https://github.com/cloudfoundry/routing-sample-apps" "${HOME}/workspace/routing-sample-apps"
+
+  # Docs Book CloudFoundry: You'll need this if you want to make any documentation changes for the Cloud Foundry docs site.
   clone_if_not_exist "https://github.com/cloudfoundry/docs-book-cloudfoundry" "${HOME}/workspace/docs-book-cloudfoundry"
+
+  # Docs Running CF: You'll need this if you want to run a docs site locally to make sure your changes are OK.
   clone_if_not_exist "https://github.com/cloudfoundry/docs-running-cf" "${HOME}/workspace/docs-running-cf"
+
+  # Istio Scaling: Used to test the scalability of Istio in a Cloud Foundry deployment
   clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${GOPATH}/src/code.cloudfoundry.org/istio-scaling"
 }
 
