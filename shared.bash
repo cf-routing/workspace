@@ -262,3 +262,5 @@ set-git-keys() {
   fi
   set_key ${hours}
 }
+export PATH="/usr/local/opt/apr/bin:$PATH"
+export PATH="/usr/local/opt/apr-util/bin:$PATH"
