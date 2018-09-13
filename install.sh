@@ -70,12 +70,12 @@ main() {
   defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
   defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
-  all_the_repos
-
   echo "Configuring databases..."
   ./scripts/setup_routing_dbs
 
   install_tmuxfiles
+
+  all_the_repos
 
   echo "Workstation setup complete — open a new window to apply all settings! 🌈"
 }
@@ -236,9 +236,6 @@ all_the_repos() {
   # Routing Team Checklists: Checklists (on-call, onboarding) and a kind of helpful wiki
   clone_if_not_exist "git@github.com:cloudfoundry/routing-team-checklists" "${HOME}/workspace/routing-team-checklists"
 
-  # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
-  clone_if_not_exist "git@github.com:cloudfoundry/routing-support-notes" "${HOME}/workspace/routing-support-notes"
-
   # Bosh Deployment: We usually use this to bump golang in our releases
   clone_if_not_exist "https://github.com/cloudfoundry/bosh-deployment" "${HOME}/workspace/bosh-deployment"
 
@@ -286,6 +283,9 @@ all_the_repos() {
 
   # Istio Scaling: Used to test the scalability of Istio in a Cloud Foundry deployment
   clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${GOPATH}/src/code.cloudfoundry.org/istio-scaling"
+
+  # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
+  clone_if_not_exist "https://github.com/pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
 }
 
 main "$@"
