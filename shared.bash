@@ -161,6 +161,13 @@ cf_seed()
   cf target -o o -s s
 }
 
+cf_clean()
+{
+  : "${1?"Please provide a target to delete. For example: cf_clean \"CATS|SMOKE|SCALING\""}"
+  cf buildpacks | grep -E "${1}" | awk '{ print $1 }' | xargs -n 1 -P 8 cf delete-buildpack -f
+  cf orgs | grep -E "${1}" | grep -v persistent | xargs -n 1 -P 8 cf delete-org -f
+  cf quotas | grep -E "${1}" | grep -v persistent | awk '{ print $1 }' | xargs -n 1 -P 8 cf delete-quota -f
+}
 
 gimme_certs() {
 	local common_name
