@@ -16,6 +16,7 @@ main() {
   setup_ssh
   install_gpg
   install_ruby
+  install_sshb0t
   install_vimfiles
 
   echo "Symlinking scripts into ~/scripts"
@@ -158,6 +159,38 @@ install_vimfiles() {
 
   echo "Adding configuration to nvim..."
   ln -sf "$(pwd)/nvim_config/after.vim" "${HOME}/.config/nvim/user/after.vim"
+}
+
+install_sshb0t() {
+  latest_tag=$(curl -s https://api.github.com/repos/genuinetools/sshb0t/releases/latest | jq .tag_name)
+
+  # If the curl to the github api fails, use latest known version
+  if [[ "$latest_tag" == "null" ]]; then
+    latest_tag="v0.3.5"
+  fi
+
+  # Export the sha256sum for verification.
+  sshb0t_sha256=$(curl -sL "https://github.com/genuinetools/sshb0t/releases/download/${latest_tag}/sshb0t-darwin-amd64.sha256" | cut -d' ' -f1)
+
+  # Download and check the sha256sum.
+  curl -fSL "https://github.com/genuinetools/sshb0t/releases/download/${latest_tag}/sshb0t-darwin-amd64" -o "/usr/local/bin/sshb0t" \
+    && echo "${sshb0t_sha256}  /usr/local/bin/sshb0t" | shasum -a 256 -c - \
+    && chmod a+x "/usr/local/bin/sshb0t"
+
+  echo "sshb0t installed!"
+
+  sshb0t --once \
+    --user tstannard \
+    --user KauzClay \
+    --user jeffpak \
+    --user Nino-K \
+    --user angelachin \
+    --user utako \
+    --user aaronshurley \
+    --user nhsieh \
+    --user rosenhouse \
+    --user zachgersh \
+    --user adobley
 }
 
 install_ruby() {
