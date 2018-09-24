@@ -162,7 +162,7 @@ install_vimfiles() {
 }
 
 install_sshb0t() {
-  latest_tag=$(curl -s https://api.github.com/repos/genuinetools/sshb0t/releases/latest | jq .tag_name)
+  latest_tag=$(curl -s https://api.github.com/repos/genuinetools/sshb0t/releases/latest | jq -r .tag_name)
 
   # If the curl to the github api fails, use latest known version
   if [[ "$latest_tag" == "null" ]]; then
