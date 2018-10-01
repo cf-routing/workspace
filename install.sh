@@ -76,7 +76,7 @@ main() {
 
   install_tmuxfiles
 
-  all_the_repos
+  GOPATH="${HOME}/go" all_the_repos
 
   echo "Workstation setup complete — open a new window to apply all settings! 🌈"
 }
