@@ -158,6 +158,7 @@ install_vimfiles() {
   fi
 
   echo "Adding configuration to nvim..."
+  mkdir -p "${HOME}/.config/nvim/user"
   ln -sf "$(pwd)/nvim_config/after.vim" "${HOME}/.config/nvim/user/after.vim"
 }
 
