@@ -319,7 +319,7 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${GOPATH}/src/code.cloudfoundry.org/istio-scaling"
 
   # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
-  clone_if_not_exist "https://github.com/pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
+  clone_if_not_exist "git@github.com:pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
 }
 
 main "$@"
