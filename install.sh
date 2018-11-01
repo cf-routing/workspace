@@ -320,6 +320,9 @@ all_the_repos() {
 
   # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
   clone_if_not_exist "git@github.com:pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
+
+  # Blog: This is the repo you use to submit blog posts to the Pivotal engineering blog.
+  clone_if_not_exist "git@github.com:pivotal-legacy/blog" "${HOME}/workspace/pivotal-engineering-blog"
 }
 
 main "$@"
