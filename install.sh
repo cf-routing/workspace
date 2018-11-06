@@ -323,6 +323,9 @@ all_the_repos() {
 
   # Blog: This is the repo you use to submit blog posts to the Pivotal engineering blog.
   clone_if_not_exist "git@github.com:pivotal-legacy/blog" "${HOME}/workspace/pivotal-engineering-blog"
+
+  # Community Bot: an ever changing tool to help with our community responsibilities
+  clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${HOME}/workspace/community-bot"
 }
 
 main "$@"
