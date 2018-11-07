@@ -109,6 +109,9 @@ confirm() {
 }
 
 brew_all_the_things() {
+  # TODO: Add retry logic around this instead
+  set +e
+
   echo "Installing homebrew..."
   if [[ -z "$(which brew)" ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -120,6 +123,8 @@ brew_all_the_things() {
   ln -sf $(pwd)/Brewfile ${HOME}/.Brewfile
   brew bundle --global
   brew bundle cleanup
+
+  set -e
 }
 
 install_gpg() {
