@@ -318,14 +318,19 @@ all_the_repos() {
   # Istio Scaling: Used to test the scalability of Istio in a Cloud Foundry deployment
   clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${GOPATH}/src/code.cloudfoundry.org/istio-scaling"
 
-  # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
-  clone_if_not_exist "git@github.com:pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
-
   # Blog: This is the repo you use to submit blog posts to the Pivotal engineering blog.
   clone_if_not_exist "git@github.com:pivotal-legacy/blog" "${HOME}/workspace/pivotal-engineering-blog"
 
   # Community Bot: an ever changing tool to help with our community responsibilities
   clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${HOME}/workspace/community-bot"
+
+  # Pivotal Only ==============================================================================================
+
+  # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
+  clone_if_not_exist "git@github.com:pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
+
+  # PKS Routing Controller
+  clone_if_not_exist "git@github.com:pivotal/pks-routing-controller" "${HOME}/workspace/pks-routing-controller"
 }
 
 main "$@"
