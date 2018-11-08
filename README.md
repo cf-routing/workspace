@@ -21,6 +21,7 @@ compton
 dakota
 lyon
 bayside
+miramar
 [other machines you might want to add]
 
 LA:
