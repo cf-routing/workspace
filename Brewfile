@@ -43,6 +43,7 @@ brew "ipcalc"
 brew "jpeg"
 brew "jq"
 brew "kubernetes-cli"
+brew "kubernetes-helm"
 brew "lastpass-cli", args: ["with-pinentry"]
 brew "libcroco"
 brew "libffi"

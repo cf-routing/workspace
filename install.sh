@@ -335,7 +335,7 @@ all_the_repos() {
   clone_if_not_exist "git@github.com:pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
 
   # PKS Routing Controller
-  clone_if_not_exist "git@github.com:pivotal/pks-routing-controller" "${HOME}/workspace/pks-routing-controller"
+  clone_if_not_exist "git@github.com:pivotal/pks-routing-controller" "${GOPATH}/src/github.com/pivotal/pks-routing-controller"
 }
 
 main "$@"
