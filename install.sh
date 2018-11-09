@@ -195,7 +195,7 @@ install_sshb0t() {
     --user angelachin \
     --user utako \
     --user aaronshurley \
-    --user nhsieh \
+    --user ndhanushkodi \
     --user rosenhouse \
     --user zachgersh \
     --user adobley
