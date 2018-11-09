@@ -53,14 +53,16 @@ main() {
 
   echo "Installing counterfeiter..."
   GOPATH="${HOME}/go" go get -u github.com/maxbrunsfeld/counterfeiter
-
+  
   echo "Installing fly..."
+  set +e
   if [ -z "$(fly -v)" ]; then
     wget https://github.com/concourse/concourse/releases/download/v4.2.1/fly_darwin_amd64
     mv fly_darwin_amd64 /usr/local/bin/fly
     chmod +x /usr/local/bin/fly
   fi
-
+  set -e
+  
   echo "Cloning colorschemes..."
   clone_if_not_exist https://github.com/chriskempson/base16-shell.git "${HOME}/.config/colorschemes"
 
