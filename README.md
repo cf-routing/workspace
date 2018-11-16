@@ -21,7 +21,7 @@ compton
 dakota
 lyon
 bayside
-miramar
+balboa
 [other machines you might want to add]
 
 LA:
