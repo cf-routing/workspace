@@ -331,6 +331,9 @@ all_the_repos() {
   # Community Bot: an ever changing tool to help with our community responsibilities
   clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${GOPATH}/src/github.com/cf-routing/community-bot"
 
+  # Pem Librarian: locates and stows pems for Istio/Copilot
+  clone_if_not_exist "https://github.com/cloudroundry/pem-librarian.git" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
+
   # Pivotal Only ==============================================================================================
 
   # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
