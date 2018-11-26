@@ -329,7 +329,7 @@ all_the_repos() {
   clone_if_not_exist "git@github.com:pivotal-legacy/blog" "${HOME}/workspace/pivotal-engineering-blog"
 
   # Community Bot: an ever changing tool to help with our community responsibilities
-  clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${HOME}/workspace/community-bot"
+  clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${GOPATH}/src/github.com/cf-routing/community-bot"
 
   # Pivotal Only ==============================================================================================
 
