@@ -284,34 +284,34 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cloudfoundry/cf-deployment" "${HOME}/workspace/cf-deployment"
 
   # CF Acceptance Test: 🐱 🐱  or CATS. Happy path integration tests for CF
-  clone_if_not_exist "https://github.com/cloudfoundry/cf-acceptance-tests" "${HOME}/workspace/cf-acceptance-tests"
+  clone_if_not_exist "https://github.com/cloudfoundry/cf-acceptance-tests" "${GOPATH}/src/code.cloudfoundry.org/cf-acceptance-tests"
 
   # CF Smoke Tests: Quick test that pretty much just pushes an app to verify a successful deployment of CF
-  clone_if_not_exist "https://github.com/cloudfoundry/cf-smoke-tests" "${HOME}/workspace/cf-smoke-tests"
+  clone_if_not_exist "https://github.com/cloudfoundry/cf-smoke-tests" "${GOPATH}/src/code.cloudfoundry.org/cf-smoke-tests"
 
   # NATS Release: Inherited from Release Integration. We now own this release, which deploys NATS, which is used in CF
-  clone_if_not_exist "https://github.com/cloudfoundry/nats-release" "${HOME}/workspace/nats-release"
+  clone_if_not_exist "https://github.com/cloudfoundry/nats-release" "${GOPATH}/src/code.cloudfoundry.org/nats-release"
 
   # Istio Acceptance Tests: Used to verify Cloud Foundry integration with Istio using real environments and real components
-  clone_if_not_exist "https://github.com/cloudfoundry/istio-acceptance-tests" "${HOME}/workspace/istio-acceptance-tests"
+  clone_if_not_exist "https://github.com/cloudfoundry/istio-acceptance-tests" "${GOPATH}/src/code.cloudfoundry.org/istio-acceptance-tests"
 
   # Istio Release: BOSH release used to deploy Istio, Envoy, Copilot
-  clone_if_not_exist "https://github.com/cloudfoundry/istio-release" "${HOME}/workspace/istio-release"
+  clone_if_not_exist "https://github.com/cloudfoundry/istio-release" "${GOPATH}/src/code.cloudfoundry.org/istio-release"
 
   # Istio Workspace: Use this if you want to work outside of your GOPATH and spin up a Vagrant VM for testing (see istio_docker())
   clone_if_not_exist "https://github.com/cloudfoundry/istio-workspace" "${HOME}/workspace/istio-workspace"
 
   # Routing API CLI: Used to interact with the Routing API, which can be found in Routing Release
-  clone_if_not_exist "https://github.com/cloudfoundry/routing-api-cli" "${HOME}/workspace/routing-api-cli"
+  clone_if_not_exist "https://github.com/cloudfoundry/routing-api-cli" "${GOPATH}/src/code.cloudfoundry.org/routing-api-cli"
 
   # Routing CI: Scripts and tasks for the Routing Concourse CI
   clone_if_not_exist "https://github.com/cloudfoundry/routing-ci" "${HOME}/workspace/routing-ci"
 
   # Routing Perf Release: Used to run performance tests against Routing Release
-  clone_if_not_exist "https://github.com/cloudfoundry/routing-perf-release" "${HOME}/workspace/routing-perf-release"
+  clone_if_not_exist "https://github.com/cloudfoundry/routing-perf-release" "${GOPATH}/src/code.cloudfoundry.org/routing-perf-release"
 
   # Routing Release: BOSH Release home to the Gorouter, TCP router, and a bunch of other routing related things. Spelunk! Refactor!
-  clone_if_not_exist "https://github.com/cloudfoundry/routing-release" "${HOME}/workspace/routing-release"
+  clone_if_not_exist "https://github.com/cloudfoundry/routing-release" "${GOPATH}/src/code.cloudfoundry.org/routing-release"
 
   # Routing Sample Apps: Mostly used by developers and PMs for debugging and acceptance. If you don't see what you need, make it and add extensive documentation.
   clone_if_not_exist "https://github.com/cloudfoundry/routing-sample-apps" "${HOME}/workspace/routing-sample-apps"
@@ -338,6 +338,9 @@ all_the_repos() {
 
   # Routing Support Notes: List of support tickets, past and present, and a handy template to start your own.
   clone_if_not_exist "git@github.com:pivotal/routing-support-notes" "${HOME}/workspace/routing-support-notes"
+
+  # Scripts for generating Istio config for PKS Routing
+  clone_if_not_exist "git@github.com:pivotal/k8s-istio-resource-generator" "${GOPATH}/src/github.com/pivotal/k8s-istio-resource-generator"
 
   # PKS Routing Controller
   clone_if_not_exist "git@github.com:pivotal/pks-routing-controller" "${GOPATH}/src/github.com/pivotal/pks-routing-controller"
