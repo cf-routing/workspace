@@ -1,5 +1,4 @@
 authors:
-  ah: Aaron Hurley; ahurley
   ac: Angela Chin; achin
   ao: Aidan Obley; aobley
   ck: Clay Kauzlaric; ckauzlaric
@@ -7,14 +6,13 @@ authors:
   jp: Jeff Pak
   nd: Nitya Dhanushkodi; ndhanushkodi
   nh: Nancy Hsieh; nhsieh
-  nk: Nino Kodabande
   uu: Utako Ueda; uueda
   zg: Zachary Gershman; zgershman
   ts: Teal Stannard; tstannard
+  br: Bruce Ricard; bricard
 
 email:
   domain: pivotal.io
 
 email_addresses:
-  nk: nkodabande@suse.com
   jp: jeffrey.pak@dell.com
