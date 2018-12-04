@@ -198,34 +198,26 @@ istio_docker() {
   local istio_dir
   istio_dir="${1}"
 
-  if lpass status; then
-    if [[ -z "${istio_dir}" ]]; then
-      echo "WARNING: istio_dir not set"
-      echo "Setting istio directory to ~/workspace/istio-release/src/istio.io/istio"
-      echo "You may optionally pass your preferred istio directory as the first argument 😀 "
-      istio_dir="${HOME}/workspace/istio-release/src/istio.io/istio"
-    else
-      echo "istio_directory set to ${istio_dir}"
-    fi
-
-    echo "Getting docker auth token..."
-    local token
-    token=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'$(lpass show "Shared-CF Routing"/hub.docker.com --username)'", "password": "'$(lpass show "Shared-CF Routing"/hub.docker.com --password)'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
-
-    echo "Getting istio/ci tags..."
-    local tag
-    tag=$(curl -s -H "Authorization: JWT ${token}" https://hub.docker.com/v2/repositories/istio/ci/tags/?page_size=100 | jq -r '.results|.[0].name')
-
-    echo "Getting most recent istio/ci images..."
-    docker pull istio/ci:"${tag}"
-
-    local image_id
-    image_id=$(docker images -f reference=istio/ci --format "{{.ID}}" | head -n1)
-
-    docker run -u root -it --cap-add=NET_ADMIN -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
+  if [[ -z "${istio_dir}" ]]; then
+    echo "WARNING: istio_dir not set"
+    echo "Setting istio directory to ~/workspace/istio-release/src/istio.io/istio"
+    echo "You may optionally pass your preferred istio directory as the first argument 😀 "
+    istio_dir="${HOME}/workspace/istio-release/src/istio.io/istio"
   else
-    echo "Please log in to lastpass using the lastpass cli. 😀"
+    echo "istio_directory set to ${istio_dir}"
   fi
+
+  echo "Getting istio/ci tags..."
+  local tag
+  tag=$(curl -s "https://hub.docker.com/v2/repositories/istio/ci/tags/" | jq -r '.results|.[0].name')
+
+  echo "Getting most recent istio/ci images..."
+  docker pull istio/ci:"${tag}"
+
+  local image_id
+  image_id=$(docker images -f reference=istio/ci --format "{{.ID}}" | head -n1)
+
+  docker run -u root -it --cap-add=NET_ADMIN -v "${istio_dir}":/go/src/istio.io/istio "${image_id}" /bin/bash
 }
 
 default_hours() {
