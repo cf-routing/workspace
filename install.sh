@@ -332,7 +332,7 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cf-routing/community-bot" "${GOPATH}/src/github.com/cf-routing/community-bot"
 
   # Zero Downtime Release: BOSH release for testing app availability
-  clone_if_not_exist "https://github.com/cf-routing/zero-downtime-release" "${GOPATH}/src/github.com/cf-routing/zero-downtime-release"
+  clone_if_not_exist "https://github.com/cf-routing/zero-downtime-release" "${HOME}/workspace/zero-downtime-release"
 
   # Pem Librarian: locates and stows pems for Istio/Copilot
   clone_if_not_exist "https://github.com/cloudfoundry/pem-librarian" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
