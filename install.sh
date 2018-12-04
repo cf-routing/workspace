@@ -73,12 +73,12 @@ main() {
   defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
   defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
+  GOPATH="${HOME}/go" all_the_repos
+
   echo "Configuring databases..."
   ./scripts/setup_routing_dbs
 
   install_tmuxfiles
-
-  GOPATH="${HOME}/go" all_the_repos
 
   echo "Workstation setup complete — open a new window to apply all settings! 🌈"
 }
