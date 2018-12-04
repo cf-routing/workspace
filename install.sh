@@ -331,6 +331,9 @@ all_the_repos() {
   # Community Bot: an ever changing tool to help with our community responsibilities
   clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${GOPATH}/src/github.com/cf-routing/community-bot"
 
+  # Zero Downtime Release: BOSH release for testing app availability
+  clone_if_not_exist "https://github.com/cf-routing/zero-downtime-release.git" "${GOPATH}/src/github.com/cf-routing/zero-downtime-release"
+
   # Pem Librarian: locates and stows pems for Istio/Copilot
   clone_if_not_exist "https://github.com/cloudroundry/pem-librarian.git" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
 
