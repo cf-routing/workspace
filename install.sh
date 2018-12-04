@@ -329,13 +329,13 @@ all_the_repos() {
   clone_if_not_exist "git@github.com:pivotal-legacy/blog" "${HOME}/workspace/pivotal-engineering-blog"
 
   # Community Bot: an ever changing tool to help with our community responsibilities
-  clone_if_not_exist "https://github.com/cf-routing/community-bot.git" "${GOPATH}/src/github.com/cf-routing/community-bot"
+  clone_if_not_exist "https://github.com/cf-routing/community-bot" "${GOPATH}/src/github.com/cf-routing/community-bot"
 
   # Zero Downtime Release: BOSH release for testing app availability
-  clone_if_not_exist "https://github.com/cf-routing/zero-downtime-release.git" "${GOPATH}/src/github.com/cf-routing/zero-downtime-release"
+  clone_if_not_exist "https://github.com/cf-routing/zero-downtime-release" "${GOPATH}/src/github.com/cf-routing/zero-downtime-release"
 
   # Pem Librarian: locates and stows pems for Istio/Copilot
-  clone_if_not_exist "https://github.com/cloudroundry/pem-librarian.git" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
+  clone_if_not_exist "https://github.com/cloudfoundry/pem-librarian" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
 
   # Pivotal Only ==============================================================================================
 
