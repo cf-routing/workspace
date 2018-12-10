@@ -323,9 +323,6 @@ all_the_repos() {
   # Istio Scaling: Used to test the scalability of Istio in a Cloud Foundry deployment
   clone_if_not_exist "https://github.com/cloudfoundry/istio-scaling" "${GOPATH}/src/code.cloudfoundry.org/istio-scaling"
 
-  # Blog: This is the repo you use to submit blog posts to the Pivotal engineering blog.
-  clone_if_not_exist "git@github.com:pivotal-legacy/blog" "${HOME}/workspace/pivotal-engineering-blog"
-
   # Community Bot: an ever changing tool to help with our community responsibilities
   clone_if_not_exist "https://github.com/cf-routing/community-bot" "${GOPATH}/src/github.com/cf-routing/community-bot"
 
@@ -333,7 +330,7 @@ all_the_repos() {
   clone_if_not_exist "https://github.com/cf-routing/zero-downtime-release" "${HOME}/workspace/zero-downtime-release"
 
   # Pem Librarian: locates and stows pems for Istio/Copilot
-  clone_if_not_exist "https://github.com/cloudfoundry/pem-librarian" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
+  clone_if_not_exist "git@github.com:cloudfoundry/pem-librarian" "${GOPATH}/src/code.cloudfoundry.org/pem-librarian"
 
   # Pivotal Only ==============================================================================================
 

@@ -18,11 +18,11 @@ echo "Starting up Postgres and Mysql"
 set +e
 brew services stop mysql  #brew services restart mysql usually does not work
 set -e
-brew services restart postgresql@9.6
+brew services restart postgresql
 brew services start mysql
 
 echo "Configuring Postgres"
-brew link postgresql@9.6 --force
+brew link postgresql --force
 set +e
 psql -U postgres -c "\l"
 postgres_role_status=$?
