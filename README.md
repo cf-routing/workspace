@@ -21,7 +21,7 @@ compton
 dakota
 lyon
 bayside
-balboa
+vicente
 [other machines you might want to add]
 
 LA:
