@@ -53,7 +53,7 @@ main() {
 
   echo "Installing counterfeiter..."
   GOPATH="${HOME}/go" go get -u github.com/maxbrunsfeld/counterfeiter
-  
+
   echo "Installing fly..."
   set +e
   if [ -z "$(fly -v)" ]; then
@@ -62,7 +62,7 @@ main() {
     chmod +x /usr/local/bin/fly
   fi
   set -e
-  
+
   echo "Cloning colorschemes..."
   clone_if_not_exist https://github.com/chriskempson/base16-shell.git "${HOME}/.config/colorschemes"
 
@@ -196,7 +196,8 @@ install_sshb0t() {
     --user ndhanushkodi \
     --user rosenhouse \
     --user zachgersh \
-    --user adobley
+    --user adobley \
+    --user bruce-ricard
 }
 
 install_ruby() {
