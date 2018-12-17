@@ -1,16 +1,14 @@
 authors:
   ac: Angela Chin; achin
   ao: Aidan Obley; aobley
+  br: Bruce Ricard; bricard
   ck: Clay Kauzlaric; ckauzlaric
   gr: Gabe Rosenhouse; grosenhouse
   jp: Jeff Pak
-  mo: Michael Oleske; moleske
   nd: Nitya Dhanushkodi; ndhanushkodi
-  uu: Utako Ueda; uueda
-  zg: Zachary Gershman; zgershman
-  ts: Teal Stannard; tstannard
-  br: Bruce Ricard; bricard
   nh: Nancy Hsieh; nhsieh
+  ts: Teal Stannard; tstannard
+  uu: Utako Ueda; uueda
 
 email:
   domain: pivotal.io
