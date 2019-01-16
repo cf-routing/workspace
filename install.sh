@@ -343,6 +343,12 @@ all_the_repos() {
 
   # PKS Routing Controller
   clone_if_not_exist "git@github.com:pivotal/pks-routing-controller" "${GOPATH}/src/github.com/pivotal/pks-routing-controller"
+
+  # Pivotal Routing CI -- pipeline and tasks for pivotal ci
+  clone_if_not_exist "git@github.com:pivotal/pivotal-routing-ci" "${GOPATH}/src/github.com/pivotal/pivotal-routing-ci"
+
+  # Routing Environments State -- env info for pivotal ci
+  clone_if_not_exist "git@github.com:pivotal/routing-environments-state" "${GOPATH}/src/github.com/pivotal/routing-environments-state"
 }
 
 main "$@"
